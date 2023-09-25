@@ -1,0 +1,24 @@
+0 - conectar o sd card na usb e, por sua vez, no computador
+
+1 - gravar a imagem do so no sd card
+    - escolher o SO Raspberry Pi OS Full 32 bits
+        32 bits porque algumas bibliotecas tem compatibilidade com 32 bits, e outras não tem com 64 
+        a Raspberry Pio só tem 1 giga
+    - Escolher o storage
+
+O número de cada placa está escrito na entrada ethernet.
+    - O número da placa serve para  colocar no hostname
+    
+
+Senha do SSID: FSE-2023
+
+para entrar no raspberry:
+
+ssh pi@rpi3-xx.local -> xx = número da placa
+senha: raspberry
+
+no raspberry, para configurá-lo, use:
+    sudo raspi-config 
+
+    system options -> boot -> console
+    

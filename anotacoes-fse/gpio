@@ -1,0 +1,20 @@
+GPIO - General Purpose Input/Output
+    - São, antes de tudo, pinos. Cada fabricante tem um padrão diferente.
+    Na raspberry, são 40 pinos, padronizados desde a versão 2 (layout B).
+    para encontrá-lo, acesse `pinout.xyz`
+
+    - Ground, 3v3 power, 5v power não transmitem dados. Apenas fornecem energia.
+        - Ground: terra, 0v. 
+
+    - O processador da raspberry só suporta 3.3volts. Nunca em algo diferente.
+    - Para garantir que um pino tá ligado ou desligado, use uma topologia pull up ou pull down.
+
+    - quando vc ligar a raspberry, a gpio de 0 a 8 tá tudo em 1(pull up), e de 9 a 27, pull down por padrão
+
+    - corrente limite por pino: range de 50mA a 800 mA
+    - como acionar a gpio? bash, python, c, rust... qualquer linguagem que tenha acesso à GPIO pode ser usada.
+
+    - como 
+    
+
+    bga ball array (embaixo do chip)

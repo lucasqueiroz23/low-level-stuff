@@ -1,0 +1,16 @@
+/bin: aplicações essencias ao usuário
+
+/dev: arquivos de dispositivos (devices)
+    - a comunicação com o hardware é feita por leitura e escrita em arquivos.
+
+/media: ponto de montagem para mídias removíveis.
+
+/var: contém arquivos de dados variáveis
+    inclui arquivos de log
+
+/proc: contém informações legíveis sobre o sistema.
+
+/home: guarda a pasta inicial de cada um dos usuários da máquina.
+
+~: home do usuário logado.
+

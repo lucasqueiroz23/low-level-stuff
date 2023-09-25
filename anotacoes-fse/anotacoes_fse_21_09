@@ -1,0 +1,53 @@
+pull down: tá ligado no ground, pull up: tá ligado no vcc.
+se não tiver pull up ou pull down, ele tá flutuando.
+
+só muda pra 0 ou 1 quando for forçado a fazer isso.
+
+estudar operações bitwise novamente
+    - obs: & -> se tiver um bit ligado é true.
+
+
+pegar um led, resistor, botão, fios de conexão e a raspberry 
+
+antes de ligar a placa na tomada: fazer o setup com a protoboard
+
+seguir o roteiro de fazer o led piscar, acioná-lo através do botão, e outras coisas mais
+
+
+ele vai mostrar trechos de código em python e em c. Na aula passada, ele só ensinou com shell
+
+
+Tudo tem importância na ordem de ligação. O programa desenvolvido, inclusive, depende dessa ordem.
+
+1 - definir um pino da gpio para ligar o led. Sugestão: escolher um que não tenha funcionalidades especiais.
+
+(lembre-se de fazer o circuito voltar no ground)
+
+2 - programação: selecione uma linguagem e uma bibioteca que provê acesso à GPIO. 
+    - usar o sys pelo bash não é tão fácil, melhor programar
+    em C: <bcm2835.h> -> não é necessariamente a melhor, depende do que vai usar
+        - obs: tem que instalar. Ela não vem por padrão. Tem um repo "scripts de configuração."
+    wiringPi é bem mais amigável. <wiringpi.h>
+
+3 - observar qual padrão usar na gpio. bcm usa a numeração da board. 
+
+4 - a primeira coisa que vc faz é inicializar a biblioteca em memória.
+    na bcm: bcm2835_init()
+    se der algo errado, encerre o programa.
+
+5 - em seguida, vamos configurar os pinos.
+    cada biblioteca faz de um jeito, mas a lógica é sempre a mesma.
+    bcm2835_gpio_fsel(pino, modo[input ou output])
+
+    - quando for input: defina se é pull down ou pull up.
+
+    5.1 - você usa funções para ler os valores dos pinos, escrever valores nos pinos...
+
+
+como transferir arquivos do host pro guest:
+    scp <caminho> pi@rpi3-xx.local:<caminho_para_armazenar_arquivo>
+        para passar um diretório: use -r 
+
+    para fazer o caminho contrário (raspberry -> host) use o caminho contrário
+
+

@@ -1,0 +1,28 @@
+Socket = endpoint para comunicação.
+
+Porta = número incluído no começo de um pacote de mensagem.
+
+Um socket é identificado por: endereço de IP + número de porta. Sockets, no geral, usam uma arquitetura cliente-servidor. O servidor "escuta" (listens) uma determinada porta, esperando requisições do cliente.
+
+Quando a requisição chega, o servidor aceita uma conexão vinda do socket do cliente para completar a conexão. 
+
+Todas as portas abaixo de 1024 são "well-known".
+    - Ex: HTTP: porta 80.
+
+Um par de processos cliente-servidor usa um par de sockets.
+
+O processo servidor tem uma porta específica bem definida (ex HTTP: porta 80)
+O processo cliente tem uma porta randômica acima de 1024.
+
+Cada conexão tem um par único de sockets. Ou seja, se eu tenho 2 processos cliente na máquina cliente, e os dois mandam requisições pro mesmo servidor, então o endereço de IP dos dois processos é o mesmo, mas existem 2 portas diferentes. Ex:
+    - Conexão 1 -> Cliente = 1.2.3.4:1234 - Servidor = 5.6.7.8:80
+    - Conexão 2 -> Cliente = 1.2.3.4:4321 - Servidor = 5.6.7.8:80
+
+
+No UNIX, os sockets são parte do SO, enquanto que outros sistemas precisam de bibliotecas para usá-los.
+
+
+Cliente = socket ativo
+Servidor = socket passivo
+
+
