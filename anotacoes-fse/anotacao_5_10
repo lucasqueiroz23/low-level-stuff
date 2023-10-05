@@ -1,0 +1,21 @@
+técnica pwm - modulação por lagrgura de pulso
+    serve pra sistemas digitais, onde vc só quer ligar/desligar um pino.
+    use a técnica para diminuir energia aos poucos.
+
+primeiro: faz os procedimentos padrão (inicia a placa, seleciona pinos, etc)
+    a entrada digital pode ser muito dinâmica.
+    - primeira técnica: polling
+        vc deve saber qual a frequência a ser escolhida para verificar se o input mudou o sinal. No trabalho, ele definiu isso.
+    
+* bouncing: exemplo: botão. Existe uma mola em baixo dele. Quando ele é pressionado, a energia "sobe"(true). Mas ele oscila entre true e false, porque é uma mola. Ela sobe e desce rapidamente. Por isso "bouncing". Ele bate e volta.
+
+    - segunda técnica: eventos -> kernel verifica se o evento ocorreu, e vc pergunta pro kernel
+        verifique os eventos: borda de subida, borda de descida, high, low
+            (o kernel faz essa verificação. Nós fazemos uma consulta ao kernel, pra ver se o evento ocorreu.)
+            o kernel pode registrar uma flag dizendo que o evento aconteceu OU ele pode criar uma fila de eventos para você.
+        
+    - terceira: interrupções -> delegue a observação dos eventos pro kernel, mas o kernel interrope o processo para indicar que o evento ocorreu.
+
+
+    ISR = INPUT SYSTEM REGISTER
+
