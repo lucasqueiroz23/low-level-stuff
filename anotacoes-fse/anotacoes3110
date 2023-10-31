@@ -1,0 +1,11 @@
+i2c: use uma lib; o sensor utilizado tem 2 endereços de memória, hardwired. Adafruit tem uma parada que é só passar o endereço como argumento de uma função.
+
+quando for fazer um projeto embarcado, estude os componentes antes de comprar. Dependendo dos requisitos, você precisa de um ou outro componente eletrônico.
+
+Entenda, também, a precisão das unidades de medidas que o componente oferece.
+
+Também, calibre os componentes, se a aplicação exigir.
+
+dentro do equipamento eletrônico, programe retornos de erros (ex: pediu endereço de memória inexistente, falha de comunicação, etc)
+
+no trabalho 2, vamos ter 2 opções de sensores, o bmp280 (da aula de hoje), via python, simples de se acessar. Em C, o sensor utilizado será o bme280. Mais preciso, e o driver dele funciona. O do bmc não funciona.

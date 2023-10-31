@@ -1,0 +1,82 @@
+**************************************************
+não pense em tipos de dados, pense em bits e bytes.
+**************************************************
+         ^
+        / \
+        | |
+        | |
+        | |
+        | |
+
+    IMPORTANTEEEEEE
+
+
+estude a função memcpy(). Essa função deve ser usada na hora de passar um tipo de dado diferente de char para um vetor de char
+
+ex: char str[20];
+    int num = 10;
+    str[0] = 0x001;
+    memcpy(&str[1], &num, sizeof(num));
+
+    isso vai copiar os valores de num para a segunda posição de str. Como são 4 bytes, então os valores de str[1] até str[4] guardarão o valor de num. Ou seja, aqueles quatro bytes terão o valor de num.
+
+    novamente: pense em nível de bits e bytes, não em nível de tipo de dado.
+
+o que são start e stop bit?
+
+    cs8 = 8 bits + start e stop bits = 10 bits.
+    cs5 = 5 bits + start e stop bits = 7 bits;
+    e assim por diante.
+
+o que é o bit de paridade?
+
+
+Protocolo MODBUS: protocolo usado para o trabalho 2. Pacote estruturado para ida e volta, ou seja, recebimento e transmissão terão a mesma estrutura de pacote. 
+    - protocolo designado para fazer comunicação em um bus com N dispositivos.
+    - comunicação ponta a ponta
+
+    formato: endereço do dispositivo (1byte) + código da função(1byte) + dados(n bytes) + crc-16(2 bytes);
+        crc: verificação de consistência de dados. (error check)
+
+    vamos implementar a modbus application layer, usando a topologia modbus+/hdlc
+        - ou seja: vamos montar o pacote e escrever direto na UART.
+    
+    outra possibilidade: tcp/ip
+
+    em modbus.org, veja, em /docs, o Modbus application protocol v1 1b3. É documentação provavelmente boa.
+
+Tem documentação de tudo isso no gitlab da disciplina.
+
+Faça os exercícios pra aprender, se não tu vai se lascar no trabalho 2
+
+trabalho: elevador
+    - vamos controlar ele usando a raspberry com a função PWM.
+    - direção 1 e 2 (2 pinos da gpio) e pwm.
+    - direção controla 4 funções que são padrão em qualquer ativação de motor. 
+        modo livre, sentido do motor(horário ou anti horário), freio do motor.
+    - pwm: intensidade de quando/quanto o motor tá ligado.  (porcentagem) -> potência do elevador
+    - como saber onde o elevador está? 2 maneiras
+        - sensores em cada andar, parecido com o "passar e parar" dos carros do semáforo 1. Ele passa e para em um andar. Daquela mesma forma: se passou, deu um pico e depois desceu. Se parou, ficou um tempo lá.
+        - outra forma: encoder, que está conectado a outro dispositivo, a esp32. Nós só programamos a Raspberry. A esp32 lê a posição do encoder e envia pra raspberry a partir da uart, protocolo modbus.
+
+    - verificar arquitetura na documentação.
+    - controlador PID (algoritmo tá pronto) para controle suave de posição.
+    - o elevador só funciona sobre demanda, diferentemente de um semáforo, que tem comportamento "ciclico".
+    - basicamente, o trabalho é UART, pwm e polling.
+
+- na rasp: loop que lê os comandos e outro loop de controle da posição (estado) do elevador. O loop de comando aciona as mudanças de estado de elevador.
+
+- primeira coisa a fazer: processo de calibração
+    - suba o elevador devagar....
+    - cada sensor de cada andar vai subir e descer o nível lógico.
+
+ex: no segundo andar, pediram pra subir. O elevador está parado no térreo. O estado muda de "parado" para "subindo". Enquanto o elevador sobre, digamos que alguém aperta pra subir no terreo. O elevador deve atender à primeira requisição.
+
+- O usuário não consegue apagar o botão de um elevador. 
+
+- Ou você segue a ordem dos chamados ou você dá uma ordem de prioridade. Por exemplo, se um usuário pede pro elevador subir, e enquanto ele sobe outro usuário, num andar abaixo, pede pra subir, e o primeiro usuário escolhe (dentro do elevador) pra descer 1 andar(não pra subir), como lidar com isso? 
+    - O professor deixou livre
+
+- Controle PID: algoritmo pronto, para controle da posição
+    - o algoritmo controla sozinho a "velocidade". se a gente fosse controlar na mão, seriam muitas variáveis que mudariam o sistema em si.
+

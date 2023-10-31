@@ -1,0 +1,8 @@
+UART é full duplex
+Tx -> Rx, GROUND c GROUND
+
+geralmente, o controle de protocolos seriais são todos feitos por hardware.
+
+dois processos nunca podem acessar a UART ao mesmo tempo.
+
+- inicializar a UART (read() com o endereço do link simbolico)

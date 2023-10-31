@@ -1,0 +1,7 @@
+se passou de 500ms, considere que ele está parado.
+
+usando interrupções: guarde o estado, i.e., conte o tempo em que a borda subiu e a borda desceu.
+    - borda subiu: um evento específico. Guarde que ele passou num boolean.
+    - borda desceu: um OUTRO evento. Indique que ele passou na mesma variável.
+
+    - isso pode dar uma race condition? 

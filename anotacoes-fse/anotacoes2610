@@ -1,0 +1,11 @@
+i2c: protocolo serial
+objetivo: fazer conexões entre circuitos integrados em placas
+síncrono
+half-duplex
+pode ser usado em barramentos com múltiplos mestres
+escravos são identificados pelos primeiros 7 bits da comunicação.
+
+raspi tem gpios dedicadas ao i2c. Usar outros pinos pra i2c é possível, mas é complicado.
+    - não a toa tem io dedicada, verificar pinout.xyz
+
+
