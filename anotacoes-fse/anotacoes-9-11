@@ -1,0 +1,16 @@
+se o elevador passa por um sensor, ele vai mandar um sinal lá.
+
+primeira rotina do trabalho(inicialização): calibrar o elevador.
+    - GPIO IN: sensor térreo, andar 1, 2 e 3
+    - GPIO OUT: DIR1, DIR2, PWM
+    - coloque o elevador no andar térreo(reiniciar dashboard) e acionar o elevador.
+        - configure o elevador para subir e descer(mexa em DIR1, DIR2 e PWM). Coloque o elevador numa velocidade não tão rápida (30%, por exemplo) e observe os sensores, verificando em que momento cada sensor foi ativado. Você pode verificar que um sensor foi ativado pela GPIO da raspi.
+        - a esp32 está recebendo, do componente encoder, a posição vertical do elevador. E a gente acessa isso usando a UART. 
+            - dica: fique lendo pela UART(polling) e guarde o valor quando o sensor apitar true. Lembrando que o sensor
+            - dica: esteja o tempo todo lendo os botões e o encoder(só não leia o encoder se o elevador estiver parado)
+
+depois de calibrar, espere alguém acionar os botões (usuários). Isso entra na rotina de controle.
+    -loop: lê encoder(para verificar a posição do elevador)
+    - lê botões: espere o usuário apertar um botão. 
+    - PID: quando o usuário escolher um andar, você vai para aquele andar(que o usuário selecionou) e depois estaciona, i.e., PID_ATUALIZA(posição do andar para subir ou descer), PID(0) -> estacionar
+
